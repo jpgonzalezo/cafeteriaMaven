@@ -40,7 +40,7 @@
 					<passwordFile>Alc1desquispe</passwordFile>
 					<domain>
 						<name>domain1</name>
-						<httpPort>8080</httpPort>
+						<httpPort>8081</httpPort>
 						<adminPort>4848</adminPort>
 					</domain>
 					<components>
