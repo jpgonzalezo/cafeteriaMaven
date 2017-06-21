@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FoodItemViewDlg" widgetVar="FoodItemViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFoodItemTitle}">
+            <h:form id="FoodItemViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{foodItemController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFoodItemLabel_idfoodItem}"/>
+                        <h:outputText value="#{foodItemController.selected.idfoodItem}" title="#{bundle.ViewFoodItemTitle_idfoodItem}"/>
+                        <h:outputText value="#{bundle.ViewFoodItemLabel_name}"/>
+                        <h:outputText value="#{foodItemController.selected.name}" title="#{bundle.ViewFoodItemTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewFoodItemLabel_price}"/>
+                        <h:outputText value="#{foodItemController.selected.price}" title="#{bundle.ViewFoodItemTitle_price}"/>
+                        <h:outputText value="#{bundle.ViewFoodItemLabel_stock}"/>
+                        <h:outputText value="#{foodItemController.selected.stock}" title="#{bundle.ViewFoodItemTitle_stock}"/>
+                        <h:outputText value="#{bundle.ViewFoodItemLabel_isEspecial}"/>
+                        <h:outputText value="#{foodItemController.selected.isEspecial}" title="#{bundle.ViewFoodItemTitle_isEspecial}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FoodItemViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

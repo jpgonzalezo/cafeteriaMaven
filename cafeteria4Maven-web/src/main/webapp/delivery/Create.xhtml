@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeliveryCreateDlg" widgetVar="DeliveryCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDeliveryTitle}">
+            <h:form id="DeliveryCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deliveryController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDeliveryLabel_iddelivery}" for="iddelivery" />
+                        <p:inputText id="iddelivery" value="#{deliveryController.selected.iddelivery}" title="#{bundle.CreateDeliveryTitle_iddelivery}" required="true" requiredMessage="#{bundle.CreateDeliveryRequiredMessage_iddelivery}"/>
+                        <p:outputLabel value="#{bundle.CreateDeliveryLabel_timeBlock}" for="timeBlock" />
+                        <p:inputText id="timeBlock" value="#{deliveryController.selected.timeBlock}" title="#{bundle.CreateDeliveryTitle_timeBlock}" />
+                        <p:outputLabel value="#{bundle.CreateDeliveryLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy HH:mm:ss" value="#{deliveryController.selected.date}" title="#{bundle.EditDeliveryTitle_date}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDeliveryLabel_availability}" for="availability" />
+                        <p:inputText id="availability" value="#{deliveryController.selected.availability}" title="#{bundle.CreateDeliveryTitle_availability}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{deliveryController.create}" value="#{bundle.Save}" update="display,:DeliveryListForm:datalist,:growl" oncomplete="handleSubmit(args,'DeliveryCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DeliveryCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

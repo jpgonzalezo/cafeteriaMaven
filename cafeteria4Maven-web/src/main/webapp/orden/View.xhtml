@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenViewDlg" widgetVar="OrdenViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewOrdenTitle}">
+            <h:form id="OrdenViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenController.selected != null}">
+                        <h:outputText value="#{bundle.ViewOrdenLabel_idorden}"/>
+                        <h:outputText value="#{ordenController.selected.idorden}" title="#{bundle.ViewOrdenTitle_idorden}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_address}"/>
+                        <h:outputText value="#{ordenController.selected.address}" title="#{bundle.ViewOrdenTitle_address}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_payment}"/>
+                        <h:outputText value="#{ordenController.selected.payment}" title="#{bundle.ViewOrdenTitle_payment}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_priceFood}"/>
+                        <h:outputText value="#{ordenController.selected.priceFood}" title="#{bundle.ViewOrdenTitle_priceFood}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_taxes}"/>
+                        <h:outputText value="#{ordenController.selected.taxes}" title="#{bundle.ViewOrdenTitle_taxes}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_priceDelivery}"/>
+                        <h:outputText value="#{ordenController.selected.priceDelivery}" title="#{bundle.ViewOrdenTitle_priceDelivery}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_status}"/>
+                        <h:outputText value="#{ordenController.selected.status}" title="#{bundle.ViewOrdenTitle_status}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_cafeteriaIdcafeteria}"/>
+                        <h:outputText value="#{ordenController.selected.cafeteriaIdcafeteria}" title="#{bundle.ViewOrdenTitle_cafeteriaIdcafeteria}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_clientIdclient}"/>
+                        <h:outputText value="#{ordenController.selected.clientIdclient}" title="#{bundle.ViewOrdenTitle_clientIdclient}"/>
+                        <h:outputText value="#{bundle.ViewOrdenLabel_deliveryIddelivery}"/>
+                        <h:outputText value="#{ordenController.selected.deliveryIddelivery}" title="#{bundle.ViewOrdenTitle_deliveryIddelivery}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="OrdenViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

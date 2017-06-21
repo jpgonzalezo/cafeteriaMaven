@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="OrdenEditDlg" widgetVar="OrdenEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditOrdenTitle}">
+            <h:form id="OrdenEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ordenController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_idorden}" for="idorden" />
+                        <p:inputText id="idorden" value="#{ordenController.selected.idorden}" title="#{bundle.EditOrdenTitle_idorden}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_idorden}"/>
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_address}" for="address" />
+                        <p:inputText id="address" value="#{ordenController.selected.address}" title="#{bundle.EditOrdenTitle_address}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_payment}" for="payment" />
+                        <p:inputText id="payment" value="#{ordenController.selected.payment}" title="#{bundle.EditOrdenTitle_payment}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_priceFood}" for="priceFood" />
+                        <p:inputText id="priceFood" value="#{ordenController.selected.priceFood}" title="#{bundle.EditOrdenTitle_priceFood}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_taxes}" for="taxes" />
+                        <p:inputText id="taxes" value="#{ordenController.selected.taxes}" title="#{bundle.EditOrdenTitle_taxes}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_priceDelivery}" for="priceDelivery" />
+                        <p:inputText id="priceDelivery" value="#{ordenController.selected.priceDelivery}" title="#{bundle.EditOrdenTitle_priceDelivery}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_status}" for="status" />
+                        <p:inputText id="status" value="#{ordenController.selected.status}" title="#{bundle.EditOrdenTitle_status}" />
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_cafeteriaIdcafeteria}" for="cafeteriaIdcafeteria" />
+                        <p:selectOneMenu id="cafeteriaIdcafeteria" value="#{ordenController.selected.cafeteriaIdcafeteria}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_cafeteriaIdcafeteria}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{cafeteriaController.itemsAvailableSelectOne}"
+                                           var="cafeteriaIdcafeteriaItem"
+                                           itemValue="#{cafeteriaIdcafeteriaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_clientIdclient}" for="clientIdclient" />
+                        <p:selectOneMenu id="clientIdclient" value="#{ordenController.selected.clientIdclient}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_clientIdclient}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                           var="clientIdclientItem"
+                                           itemValue="#{clientIdclientItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditOrdenLabel_deliveryIddelivery}" for="deliveryIddelivery" />
+                        <p:selectOneMenu id="deliveryIddelivery" value="#{ordenController.selected.deliveryIddelivery}" required="true" requiredMessage="#{bundle.EditOrdenRequiredMessage_deliveryIddelivery}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{deliveryController.itemsAvailableSelectOne}"
+                                           var="deliveryIddeliveryItem"
+                                           itemValue="#{deliveryIddeliveryItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ordenController.update}" value="#{bundle.Save}" update="display,:OrdenListForm:datalist,:growl" oncomplete="handleSubmit(args, 'OrdenEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="OrdenEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
