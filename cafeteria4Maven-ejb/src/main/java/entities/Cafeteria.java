@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Cafeteria.findByName", query = "SELECT c FROM Cafeteria c WHERE c.name = :name")
     , @NamedQuery(name = "Cafeteria.findByEmail", query = "SELECT c FROM Cafeteria c WHERE c.email = :email")})
 public class Cafeteria implements Serializable {
+    int num;
 
     private static final long serialVersionUID = 1L;
     @Id
