@@ -11,4 +11,17 @@
     <module>cafeteria4Maven-web</module>
     <module>cafeteria4Maven-ejb</module>
   </modules>
+  <dependencies>
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-server</artifactId>
+                <version>3.0.1</version>
+            </dependency>
+            <dependency>				
+              <groupId>org.testng</groupId>								
+              <artifactId>testng</artifactId>								
+              <version>6.8</version>								
+              <scope>test</scope>							  			
+            </dependency>		
+  </dependencies>
 </project>
