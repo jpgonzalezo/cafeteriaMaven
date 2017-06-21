@@ -37,7 +37,7 @@
 				<configuration>
 				<glassfishDirectory>/home/alcides/glassfish4/glassfish/</glassfishDirectory>
 					<user>admin</user>
-					<password>Alc1desquispe</password>
+					<passwordFile>${local.glassfish.passfile}</passwordFile>
 					<domain>
 						<name>domain1</name>
 						<httpPort>8081</httpPort>
