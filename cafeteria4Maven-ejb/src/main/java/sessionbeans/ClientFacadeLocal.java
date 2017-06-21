@@ -30,4 +30,8 @@ public interface ClientFacadeLocal {
 
     int count();
     
+    List<List<String>> consultarOrden(String email);
+    
+    public List<String> consultarUser(String mail, String pass);
+    
 }

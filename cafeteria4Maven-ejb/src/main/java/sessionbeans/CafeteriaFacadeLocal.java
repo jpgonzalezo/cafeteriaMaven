@@ -30,4 +30,6 @@ public interface CafeteriaFacadeLocal {
 
     int count();
     
+    Integer getIdCafeteria();
+    
 }

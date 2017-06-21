@@ -51,14 +51,27 @@ public class Cafeteria implements Serializable {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cafeteriaIdcafeteria")
     private Collection<Orden> ordenCollection;
-
-    public Cafeteria() {
+    
+    //SINGLETON
+    private static Cafeteria instanciaCafeteria;
+    
+    private Cafeteria() {
+    }
+    
+    //SINGLETON
+    public static Cafeteria getInstance(){
+            if(instanciaCafeteria == null){
+                instanciaCafeteria = new Cafeteria();
+            }
+            return instanciaCafeteria;
     }
 
     public Cafeteria(Integer idcafeteria) {
         this.idcafeteria = idcafeteria;
     }
 
+
+   
     public Integer getIdcafeteria() {
         return idcafeteria;
     }

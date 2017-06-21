@@ -29,4 +29,18 @@ public class CafeteriaFacade extends AbstractFacade<Cafeteria> implements Cafete
         super(Cafeteria.class);
     }
     
+    @Override
+    public Integer getIdCafeteria(){
+        Cafeteria caf=Cafeteria.getInstance();
+        
+        String idCafBD= em.createNativeQuery("SELECT idcafeteria FROM cafeteria").getSingleResult().toString();
+        caf.setIdcafeteria(Integer.parseInt(idCafBD));
+        Cafeteria caf2=Cafeteria.getInstance();
+        caf2.setName("otro nombre");
+        Integer idCafeteria=caf.getIdcafeteria();
+        System.out.println("///// ID ------------------ //////"+idCafeteria);
+        System.out.println("///// NOMBRE ------------------ //////"+caf.getName());
+        return idCafeteria;
+    }
+    
 }

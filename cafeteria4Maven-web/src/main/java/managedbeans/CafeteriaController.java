@@ -49,11 +49,11 @@ public class CafeteriaController implements Serializable {
         return ejbFacade;
     }
 
-    public Cafeteria prepareCreate() {
+    /*public Cafeteria prepareCreate() {
         selected = new Cafeteria();
         initializeEmbeddableKey();
         return selected;
-    }
+    }*/
 
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CafeteriaCreated"));

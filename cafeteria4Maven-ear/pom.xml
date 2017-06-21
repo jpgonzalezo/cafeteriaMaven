@@ -37,7 +37,7 @@
 				<configuration>
 				<glassfishDirectory>${local.glassfish.home}</glassfishDirectory>
 					<user>admin</user>
-					<passwordFile>${local.glassfish.passfile}</passwordFile>
+					<passwordFile>Alc1desquispe</passwordFile>
 					<domain>
 						<name>domain1</name>
 						<httpPort>8080</httpPort>
