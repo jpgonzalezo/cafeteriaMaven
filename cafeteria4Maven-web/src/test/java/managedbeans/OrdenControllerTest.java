@@ -273,15 +273,5 @@ public class OrdenControllerTest extends TestCase {
         }
     }
     
-        public void testCreateFoodItemSeleccionada() {
-        System.out.println("createFoodItemSeleccionada");
-        List<List<String>> foodSeleccionada = null;
-        OrdenController instance = new OrdenController();
-        List<FoodItem> expResult = null;
-        List<FoodItem> result = instance.createFoodItemSeleccionada(foodSeleccionada);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    } 
 
 }
