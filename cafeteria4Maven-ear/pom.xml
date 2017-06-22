@@ -48,7 +48,7 @@
 					<passwordFile>${local.glassfish.passfile}</passwordFile>
 					<domain>
 						<name>domain1</name>
-						<httpPort>8081</httpPort>
+						<httpPort>8080</httpPort>
 						<adminPort>4848</adminPort>
 					</domain>
 					<components>
