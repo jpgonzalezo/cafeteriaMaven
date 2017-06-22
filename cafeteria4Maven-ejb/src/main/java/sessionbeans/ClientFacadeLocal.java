@@ -4,14 +4,13 @@
  * and open the template in the editor.
  */
 package sessionbeans;
-
 import entities.Client;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Local
 public interface ClientFacadeLocal {
@@ -34,4 +33,5 @@ public interface ClientFacadeLocal {
     
     public List<String> consultarUser(String mail, String pass);
     
+    Client consulta(Integer idClient);
 }

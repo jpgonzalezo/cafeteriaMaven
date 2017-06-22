@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Stateless
 public class DeliveryFacade extends AbstractFacade<Delivery> implements DeliveryFacadeLocal {

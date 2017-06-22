@@ -26,6 +26,7 @@ public class ClientController implements Serializable {
     @EJB
     private ClientFacadeLocal ejbFacade;
     private List<Client> items = null;
+     private List<List<String>> food = null;
     private Client selected;
 
     public ClientController() {
@@ -55,6 +56,12 @@ public class ClientController implements Serializable {
         return selected;
     }
 
+    
+      public List<List<String>> getFoodItemsFromOrden(String email){
+        food= getFacade().consultarOrden(email);
+        return food;
+    }
+      
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ClientCreated"));
         if (!JsfUtil.isValidationFailed()) {

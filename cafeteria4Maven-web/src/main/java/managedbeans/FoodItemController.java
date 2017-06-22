@@ -27,14 +27,14 @@ public class FoodItemController implements Serializable {
     private FoodItemFacadeLocal ejbFacade;
     private List<FoodItem> items = null;
     private FoodItem selected;
-
+    private List<FoodItem> selectedFood;
     public FoodItemController() {
     }
 
     public FoodItem getSelected() {
         return selected;
     }
-
+     
     public void setSelected(FoodItem selected) {
         this.selected = selected;
     }
@@ -47,6 +47,13 @@ public class FoodItemController implements Serializable {
 
     private FoodItemFacadeLocal getFacade() {
         return ejbFacade;
+    }
+     public List<FoodItem> getSelectedFoodItem() {
+        return selectedFood;
+    }
+ 
+    public void setSelectedFoodItem(List<FoodItem> selectedFood) {
+        this.selectedFood = selectedFood;
     }
 
     public FoodItem prepareCreate() {
@@ -81,6 +88,8 @@ public class FoodItemController implements Serializable {
         return items;
     }
 
+    
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -121,7 +130,7 @@ public class FoodItemController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = FoodItem.class)
+    @FacesConverter(value="permisoConverter" , forClass = FoodItem.class)
     public static class FoodItemControllerConverter implements Converter {
 
         @Override

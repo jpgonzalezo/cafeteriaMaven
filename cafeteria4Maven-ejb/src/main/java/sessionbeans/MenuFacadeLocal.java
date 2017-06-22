@@ -6,6 +6,7 @@
 package sessionbeans;
 
 import entities.Menu;
+import entities.FoodItem;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface MenuFacadeLocal {
     List<Menu> findRange(int[] range);
 
     int count();
+    
+    List<List<String>> consulta(Integer id_menu);
     
 }

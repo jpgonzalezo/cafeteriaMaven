@@ -6,7 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Entity
 @Table(name = "client")
@@ -57,7 +57,7 @@ public class Client implements Serializable {
     @Column(name = "address")
     private String address;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "clientIdclient")
-    private Collection<Orden> ordenCollection;
+    private List<Orden> ordenList;
 
     public Client() {
     }
@@ -107,12 +107,12 @@ public class Client implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Orden> getOrdenCollection() {
-        return ordenCollection;
+    public List<Orden> getOrdenList() {
+        return ordenList;
     }
 
-    public void setOrdenCollection(Collection<Orden> ordenCollection) {
-        this.ordenCollection = ordenCollection;
+    public void setOrdenList(List<Orden> ordenList) {
+        this.ordenList = ordenList;
     }
 
     @Override

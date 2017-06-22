@@ -57,6 +57,14 @@
                             </f:facet>
                             <h:outputText value="#{item.isEspecial}"/>
                         </p:column>
+                        
+                        <!--<p:column>
+                            <f:facet name="header">
+                                <h:outputText value="tipo"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </p:column>-->
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{foodItemController.prepareCreate}" update=":FoodItemCreateForm" oncomplete="PF('FoodItemCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FoodItemViewForm" oncomplete="PF('FoodItemViewDialog').show()" disabled="#{empty foodItemController.selected}"/>

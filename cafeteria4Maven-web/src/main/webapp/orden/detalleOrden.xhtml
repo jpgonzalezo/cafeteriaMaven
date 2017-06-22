@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Detalle orden comida"></h:outputText>
+        </ui:define>
+            
+            
+        <ui:define name="body">
+            <h:inputHidden value="#{ordenController.vaciarFoodItemSeleccionado()}"></h:inputHidden>
+            <h:inputHidden value="#{ordenController.setFoodSeleccionada(menuController.seleccionados)}"></h:inputHidden>
+            <h:inputHidden value="#{ordenController.createFoodItemSeleccionada(ordenController.foodSeleccionada)}"></h:inputHidden>
+            
+            <p:dataTable id="datalist" value="#{ordenController.foodItemSeleccionada}" var="item"
+                         selectionMode="single" selection="#{foodItemController.selected}"
+                         rowKey="#{item.idfoodItem}"
+                         >
+                <p:column>
+             
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputText value="#{item.name}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Precio"/>
+                    </f:facet>
+                    <h:outputText value="#{item.price}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Especial"/>
+                    </f:facet>
+                    <h:outputText value="#{item.isEspecial}"/>
+                </p:column>
+            </p:dataTable>
+            
+            
+            <h:form>
+                <h:outputLabel for="basic" value="Propina:" />
+                <p:inputText id="inputTaxes" value="#{ordenController.propina}" /> 
+                <br></br>
+                <h:outputLabel for="basic" value="Precio Comida:" />
+                <p:outputLabel id="inputPriceFood" value="#{ordenController.precioComida}" />
+                <br></br>  
+
+                <p:commandButton value="Siguiente" oncomplete="PF('dlg').show()" onclick="location.href='http://localhost:8080/Cafeteria4-war/faces/orden/detalleOrden2.xhtml'"/>
+            </h:form>
+            
+            
+        </ui:define>
+    </ui:composition>
+    
+</html>

@@ -22,6 +22,9 @@
                         <p:inputText id="stock" value="#{foodItemController.selected.stock}" title="#{bundle.EditFoodItemTitle_stock}" />
                         <p:outputLabel value="#{bundle.EditFoodItemLabel_isEspecial}" for="isEspecial" />
                         <p:inputText id="isEspecial" value="#{foodItemController.selected.isEspecial}" title="#{bundle.EditFoodItemTitle_isEspecial}" />
+                        
+                        <!--<p:outputLabel value="tipo" for="tipo" />
+                        <p:inputText id="tipo" value="#{foodItemController.selected.tipo}" title="tipo" />-->
                     </p:panelGrid>
                     <p:commandButton actionListener="#{foodItemController.update}" value="#{bundle.Save}" update="display,:FoodItemListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FoodItemEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="FoodItemEditDialog.hide()"/>

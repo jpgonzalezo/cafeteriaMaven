@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Stateless
 public class FoodItemFacade extends AbstractFacade<FoodItem> implements FoodItemFacadeLocal {

@@ -16,6 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface FoodItemFacadeLocal {
 
+
     void create(FoodItem foodItem);
 
     void edit(FoodItem foodItem);

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Detalle orden comida"></h:outputText>
+        </ui:define>
+        <ui:define name="body">  
+            <h:form>
+                <p:panel style="margin-bottom:10px;">
+                <h:outputLabel for="basic" value="Direccion:" />
+                <p:inputText id="inputAddress" value="#{ordenController.direccionEntrega}" /> 
+                <br></br>
+                <h:outputLabel for="basic" value="Precio Entrega:" />
+                <p:outputLabel id="outputPriceDelivery" value="#{ordenController.precioEntrega}" />
+                <br></br> 
+                </p:panel>
+                
+<p>#{ordenController.init()}
+                <p:growl id="msgs" showDetail="true" />
+                <p:panel header="Servicio Delivery" style="margin-bottom:10px;">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="opcion" value="Delivery: " />
+                        <p:selectOneMenu id="opcion" value="#{ordenController.opcion}" style="width:150px">
+                            <p:ajax listener="#{ordenController.onOpcionChange()}" update="bloque" />
+                            <f:selectItem itemLabel="Seleccione opcion" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{ordenController.opciones}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel for="bloque" value="Bloques: " />
+                        <p:selectOneMenu id="bloque" value="#{ordenController.bloque}" style="width:150px">
+                            <f:selectItem itemLabel="Seleccione un bloque" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{ordenController.bloques}" />
+                        </p:selectOneMenu>
+                    </h:panelGrid>
+        <p:separator />
+        <p:commandButton value="Submit" update="msgs" actionListener="#{ordenController.displayLocation}" icon="ui-icon-check" />
+    </p:panel>
+                
+      </p>          
+
+              <p:commandButton value="Comprar" oncomplete="location.href='http://localhost:8080/Cafeteria4-war/faces/orden/compraTerminada.xhtml'"  actionListener="#{ordenController.guardarOrden}" ajax="false"  />
+           <!--
+            <p:button id="comprar" outcome="compraTerminada" value="Comprar" 
+                      icon="ui-icon-star" />   -->
+                </h:form>
+            
+            
+        </ui:define>
+    </ui:composition>
+    
+</html>

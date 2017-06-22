@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+     <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMenuTitle}"></h:outputText>
+        </ui:define>
+      
+        <ui:define name="body">
+            #{ordenController.setIdCliente(loginController.clienteIdLogin)}
+        <h:form id="form">
+       
+        <!--
+Para acceder a los datos es igual que un arreglo normal 
+        Falta poder cambiar el parametro que recibe getFoodItems
+
+        
+        Se tiene que poder seleccionar Comidas del menu / se suman los valores / se verifica cantidad
+        y siguiente
+        -->
+        <p:panel header="Menu de hoy #{ordenController.idCliente}" ><!--FoodItems Menu 1-->
+        <p:dataTable  id="checkboxDT" value="#{menuController.getFoodItems(1)}" var="item"
+                      
+                      selection="#{menuController.seleccionados}"
+                                 paginator="true"
+                                 rowKey="#{item[0]}"
+                                 
+                                 scrollable="true" scrollHeight="250" >
+      
+                         <p:column   selectionMode="multiple" style="width:16px;text-align:center">
+                         </p:column>
+                             <!--<p:column   >
+                            <f:facet name="header">
+                                <h:outputText value="id"/>
+                            </f:facet>
+                           
+                            <h:outputText value="#{item[0]}" />
+                            
+                        </p:column>-->
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="name"/>
+                            </f:facet>
+                            <h:outputText value="#{item[1]}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="precio"/>
+                            </f:facet>
+                            <h:outputText value="#{item[2]}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="stock"/>
+                            </f:facet>
+                            <h:outputText value="#{item[3]}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Es especial del dia"/>
+                            </f:facet>
+                            <h:outputText value="#{item[4]}"/>
+                        </p:column>
+            <f:facet name="footer">
+            <p:commandButton  process="checkboxDT" update=":form:carDetail comprar" value="Seleccionar" action="#{menuController.setBotonComprar(false)}" />
+        <p:button 
+           id="comprar" outcome="/orden/detalleOrden" value="Comprar" icon="ui-icon-star" disabled="#{menuController.isBotonComprar()}">      
+        </p:button>
+           </f:facet>
+        </p:dataTable>
+        <!--Se guarda la seleccion-->
+        <p:dialog header="FoodItem info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="carDetail" style="text-align:center;">
+            <p:panelGrid   columns="2" rendered="#{not empty menuController.seleccionado}" columnClasses="label,value">
+ 
+                <h:outputText value="id" />
+                <h:outputText value="#{menuController.seleccionado[0]}" />
+ 
+                <h:outputText value="name" />
+                <h:outputText value="#{menuController.seleccionado[1]}" />
+ 
+                <h:outputText value="precio" />
+                <h:outputText value="#{menuController.seleccionado[2]}" />
+ 
+                <h:outputText value="stock" />
+                <h:outputText value="$#{menuController.seleccionado[3]}" />
+                
+                <h:outputText value="Es especial del dia" />
+                <h:outputText value="$#{menuController.seleccionado[4]}" />
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+        
+        <!--Se despliegan lo que se selecciona. Despliega tantas veces los datos por cantidad de elementos en "seleccionados"-->   
+        <!-- <p:dialog header="Selected FoodItems" widgetVar="multiCarDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="200">
+        
+        <p:outputPanel id="multiCarDetail" style="text-align:center;">
+            <ui:repeat id="algo" value="#{menuController.seleccionados}" var="item">
+                <h:outputText value="#{item[2]}-#{item[3]}" style="display:block"/>
+            </ui:repeat>
+        </p:outputPanel>
+         </p:dialog>
+       -->
+        </p:panel>
+         
+        </h:form>
+            
+    </ui:define>
+   </ui:composition>
+
+</html>

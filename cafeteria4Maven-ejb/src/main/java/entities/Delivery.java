@@ -6,8 +6,8 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Entity
 @Table(name = "delivery")
@@ -52,7 +52,7 @@ public class Delivery implements Serializable {
     @Column(name = "availability")
     private Integer availability;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryIddelivery")
-    private Collection<Orden> ordenCollection;
+    private List<Orden> ordenList;
 
     public Delivery() {
     }
@@ -94,12 +94,12 @@ public class Delivery implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Orden> getOrdenCollection() {
-        return ordenCollection;
+    public List<Orden> getOrdenList() {
+        return ordenList;
     }
 
-    public void setOrdenCollection(Collection<Orden> ordenCollection) {
-        this.ordenCollection = ordenCollection;
+    public void setOrdenList(List<Orden> ordenList) {
+        this.ordenList = ordenList;
     }
 
     @Override

@@ -6,7 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Entity
 @Table(name = "food_item")
@@ -37,6 +37,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "FoodItem.findByStock", query = "SELECT f FROM FoodItem f WHERE f.stock = :stock")
     , @NamedQuery(name = "FoodItem.findByIsEspecial", query = "SELECT f FROM FoodItem f WHERE f.isEspecial = :isEspecial")})
 public class FoodItem implements Serializable {
+
+    /*@Column(name = "tipo")
+    private Integer tipo;*/
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,19 +61,21 @@ public class FoodItem implements Serializable {
         @JoinColumn(name = "food_item_idfood_item", referencedColumnName = "idfood_item")}, inverseJoinColumns = {
         @JoinColumn(name = "menu_idmenu", referencedColumnName = "idmenu")})
     @ManyToMany
-    private Collection<Menu> menuCollection;
+    private List<Menu> menuList;
     @JoinTable(name = "orden_has_food_item", joinColumns = {
         @JoinColumn(name = "food_item_idfood_item", referencedColumnName = "idfood_item")}, inverseJoinColumns = {
         @JoinColumn(name = "orden_idorden", referencedColumnName = "idorden")})
     @ManyToMany
-    private Collection<Orden> ordenCollection;
+    private List<Orden> ordenList;
 
     public FoodItem() {
     }
 
-    public FoodItem(Integer idfoodItem) {
+    /*public FoodItem(Integer idfoodItem) {
         this.idfoodItem = idfoodItem;
-    }
+    }*/
+    
+
 
     public Integer getIdfoodItem() {
         return idfoodItem;
@@ -113,21 +118,21 @@ public class FoodItem implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Menu> getMenuCollection() {
-        return menuCollection;
+    public List<Menu> getMenuList() {
+        return menuList;
     }
 
-    public void setMenuCollection(Collection<Menu> menuCollection) {
-        this.menuCollection = menuCollection;
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
     }
 
     @XmlTransient
-    public Collection<Orden> getOrdenCollection() {
-        return ordenCollection;
+    public List<Orden> getOrdenList() {
+        return ordenList;
     }
 
-    public void setOrdenCollection(Collection<Orden> ordenCollection) {
-        this.ordenCollection = ordenCollection;
+    public void setOrdenList(List<Orden> ordenList) {
+        this.ordenList = ordenList;
     }
 
     @Override
@@ -154,5 +159,13 @@ public class FoodItem implements Serializable {
     public String toString() {
         return "entities.FoodItem[ idfoodItem=" + idfoodItem + " ]";
     }
+
+    /*public Integer getTipo() {
+        return tipo;
+    }*/
+
+    /*public void setTipo(Integer tipo) {
+        this.tipo = tipo;
+    }*/
     
 }

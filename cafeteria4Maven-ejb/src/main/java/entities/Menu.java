@@ -49,7 +49,7 @@ public class Menu implements Serializable {
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
-    @ManyToMany(mappedBy = "menuCollection")
+    
     private Collection<FoodItem> foodItemCollection;
 
     public Menu() {

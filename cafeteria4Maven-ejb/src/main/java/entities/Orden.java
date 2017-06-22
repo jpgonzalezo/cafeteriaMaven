@@ -6,7 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Entity
 @Table(name = "orden")
@@ -62,8 +62,7 @@ public class Orden implements Serializable {
     @Size(max = 45)
     @Column(name = "status")
     private String status;
-    @ManyToMany(mappedBy = "ordenCollection")
-    private Collection<FoodItem> foodItemCollection;
+    private List<FoodItem> foodItemList;
     @JoinColumn(name = "cafeteria_idcafeteria", referencedColumnName = "idcafeteria")
     @ManyToOne(optional = false)
     private Cafeteria cafeteriaIdcafeteria;
@@ -74,9 +73,24 @@ public class Orden implements Serializable {
     @ManyToOne(optional = false)
     private Delivery deliveryIddelivery;
 
+    OrdenState pendiente;
+    OrdenState completada;
+    OrdenState ordenState;
+    
     public Orden() {
+        pendiente = new Pendiente(this);
+        completada = new Completada(this);
+        ordenState = pendiente;
     }
-
+    
+    public void setOrdenState(OrdenState newOrdenState){
+        ordenState = newOrdenState;
+    }
+    
+    public String verEstado(){
+        return ordenState.verEstado();
+    }
+    
     public Orden(Integer idorden) {
         this.idorden = idorden;
     }
@@ -138,12 +152,12 @@ public class Orden implements Serializable {
     }
 
     @XmlTransient
-    public Collection<FoodItem> getFoodItemCollection() {
-        return foodItemCollection;
+    public List<FoodItem> getFoodItemList() {
+        return foodItemList;
     }
 
-    public void setFoodItemCollection(Collection<FoodItem> foodItemCollection) {
-        this.foodItemCollection = foodItemCollection;
+    public void setFoodItemList(List<FoodItem> foodItemList) {
+        this.foodItemList = foodItemList;
     }
 
     public Cafeteria getCafeteriaIdcafeteria() {

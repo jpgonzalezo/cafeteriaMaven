@@ -5,13 +5,14 @@
  */
 package sessionbeans;
 
+import entities.FoodItem;
 import entities.Orden;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Local
 public interface OrdenFacadeLocal {
@@ -30,4 +31,13 @@ public interface OrdenFacadeLocal {
 
     int count();
     
+    FoodItem consulta(Integer id_foodItem);
+    
+    void guardarDatosOrden(String idCliente,Integer propina,Integer precioComida,float precioEntrega,String direccionEntrega,String bloque, List<List<String>> foodSeleccionada, String estado,Integer idCafeteria);
+    
+    void CambiarEstado();
+    
+    String consultarEstado();
+    
+    void actualizarStock(List<List<String>> foodSeleccionada);
 }

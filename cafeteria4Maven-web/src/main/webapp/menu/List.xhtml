@@ -47,6 +47,8 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                             </h:outputText>
                         </p:column>
+                        
+                        
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{menuController.prepareCreate}" update=":MenuCreateForm" oncomplete="PF('MenuCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MenuViewForm" oncomplete="PF('MenuViewDialog').show()" disabled="#{empty menuController.selected}"/>
@@ -55,8 +57,9 @@
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
+                <h:outputText value="#{menuController.getFoodItems(1)}"> </h:outputText>
             </h:form>
-
+            
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

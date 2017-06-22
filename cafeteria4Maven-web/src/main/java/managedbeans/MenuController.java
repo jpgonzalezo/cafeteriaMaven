@@ -1,10 +1,12 @@
 package managedbeans;
 
+import sessionbeans.FoodItemFacade;
 import entities.Menu;
 import managedbeans.util.JsfUtil;
 import managedbeans.util.JsfUtil.PersistAction;
 import sessionbeans.MenuFacadeLocal;
-
+import entities.FoodItem;
+import managedbeans.OrdenController;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,11 +28,45 @@ public class MenuController implements Serializable {
     @EJB
     private MenuFacadeLocal ejbFacade;
     private List<Menu> items = null;
+    private List<List<String>> food = null;
     private Menu selected;
+    private List<String> seleccionado;
+    private List<List<String>> seleccionados;
+    //private OrdenController controladorOrden;
+     private boolean botonComprar= true;
 
-    public MenuController() {
+    public boolean isBotonComprar() {
+        return botonComprar;
     }
 
+    public void setBotonComprar(boolean botonComprar) {
+        this.botonComprar = botonComprar;
+    }
+
+    // default constructor  
+    public MenuController() {
+    }
+   
+    /*public OrdenController getOrdenController(){
+        return controladorOrden;
+    }*/
+    
+    public List<String> getSeleccionado() {
+        return seleccionado;
+    }
+
+    public void setSeleccionado(List<String> seleccionado){
+        this.seleccionado = seleccionado;
+    }
+    
+    public List<List<String>> getSeleccionados() {
+        return seleccionados;
+    }
+
+    public void setSeleccionados(List<List<String>> seleccionados){
+        this.seleccionados = seleccionados;
+    }
+    
     public Menu getSelected() {
         return selected;
     }
@@ -47,8 +83,17 @@ public class MenuController implements Serializable {
 
     private MenuFacadeLocal getFacade() {
         return ejbFacade;
+        
     }
+    
+    public String action(){
 
+	    //List<List<String>> value = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("hidden");
+	    //setSeleccionados(value);
+
+	    return "/Quizy.xhtml?faces-redirect=true";
+	}
+    
     public Menu prepareCreate() {
         selected = new Menu();
         initializeEmbeddableKey();
@@ -81,6 +126,11 @@ public class MenuController implements Serializable {
         return items;
     }
 
+    public List<List<String>> getFoodItems(Integer id){
+        food= getFacade().consulta(id);
+        return food;
+    }
+    
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
             setEmbeddableKeys();
@@ -121,6 +171,7 @@ public class MenuController implements Serializable {
         return getFacade().findAll();
     }
 
+ 
     @FacesConverter(forClass = Menu.class)
     public static class MenuControllerConverter implements Converter {
 

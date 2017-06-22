@@ -7,6 +7,8 @@ package sessionbeans;
 
 import entities.Client;
 import entities.FoodItem;
+import factory.Factory;
+import iterador.Iterador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -16,11 +18,11 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Stateless
 public class ClientFacade extends AbstractFacade<Client> implements ClientFacadeLocal {
-    
+
     @EJB
     private FoodItemFacadeLocal foodItemFacade;
     @EJB
@@ -33,12 +35,13 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     public ClientFacade() {
         super(Client.class);
     }
     
-     /*
+    
+    /*
     Mostrar ordener realizadas por un cliente en especifico
     entrada: email nos da el id y con el id se obtienen las ordenes 
     salida: lista de ordenes
@@ -72,7 +75,7 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     }
     @Override
     public List<String> consultarUser(String mail, String pass){
-        List lista= em.createNativeQuery("SELECT idClient FROM client WHERE email ='"+mail+"' and password ='"+pass+"'")
+        List lista= em.createNativeQuery("SELECT idclient FROM client WHERE email ='"+mail+"' and password ='"+pass+"'")
                 .getResultList();
         
         List<String> aux = new ArrayList<>();
@@ -97,4 +100,16 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
         return aux;
     }
     
+    @Override
+    public Client consulta(Integer idClient){
+        List lista= em.createNativeQuery("SELECT * FROM client WHERE idclient="+idClient).getResultList();       
+        Iterador iterador;
+        Factory fabricaFoodItem;
+        Client cliente= new Client();
+        for(int i=0; i< lista.size(); i++) {
+           cliente= clientFacade.find((Integer)lista.get(i));
+        }
+        return cliente;
+    }
+
 }
