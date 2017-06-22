@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author Juan Pablo
+ * @author DarkAnimat
  */
 @Stateless
 public class CafeteriaFacade extends AbstractFacade<Cafeteria> implements CafeteriaFacadeLocal {
@@ -42,5 +42,4 @@ public class CafeteriaFacade extends AbstractFacade<Cafeteria> implements Cafete
         System.out.println("///// NOMBRE ------------------ //////"+caf.getName());
         return idCafeteria;
     }
-    
 }
